@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: cate-serve
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: "letsencrypt"
+    certmanager.k8s.io/acme-challenge-type: http01
+spec:
+  tls:
+    - hosts:
+        - cate-serve.192.171.139.57.nip.io
+      secretName: cate-serve-tls  # This secret will be created by cert-manager
+  rules:
+    - host: cate-serve.192.171.139.57.nip.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: cate-serve
+              servicePort: 4000
