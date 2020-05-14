@@ -1,8 +1,0 @@
-commonLabels:
-  app: cate-server
-
-resources:
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml
-  - storage.yaml
