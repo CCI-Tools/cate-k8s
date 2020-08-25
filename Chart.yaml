@@ -1,6 +1,6 @@
 apiVersion: v2
-name: cate-webui
-description: A Helm chart for Kubernetes
+name: cate
+description: A Helm Chart for the CCI Toolbox (cate)
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -20,6 +20,7 @@ version: 0.1.12
 # incremented each time you make changes to the application.
 appVersion: 2.1.0
 
+# This Chart depends on jupyterhub version 0.8.2
 dependencies:
   - name: jupyterhub
     version: 0.8.2
