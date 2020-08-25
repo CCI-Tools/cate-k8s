@@ -21,4 +21,4 @@ tags
 # Persistent undo
 [._]*.un~
 
-/cate/Chart.lock
+/Chart.lock
