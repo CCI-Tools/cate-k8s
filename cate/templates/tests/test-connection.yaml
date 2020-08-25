@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "cate-webui.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "cate-webui.fullname" . }}:{{ .Values.webui.service.port }}']
   restartPolicy: Never

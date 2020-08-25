@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  cate:
+    - created: 2020-08-25
+      description: Deploy a K8s cate infrastructure for cate Version 2.1.0
+      digest:
+      home: https://github.com/CCI-Tools
+      name: cate
+      sources:
+        - https://github.com//CCI-Tools/cate
+      urls:
+        - ttps://github.com//CCI-Tools/cate-k8s/chart/cate-webui-0.1.12.tgz
+      version: 0.1.12

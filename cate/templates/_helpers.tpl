@@ -3,7 +3,7 @@
 Expand the name of the chart.
 */}}
 {{- define "cate-webui.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- default .Chart.Name .Values.webui.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -12,10 +12,10 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 If release name contains chart name it will be used as a full name.
 */}}
 {{- define "cate-webui.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- if .Values.webui.fullnameOverride -}}
+{{- .Values.webui.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- $name := default .Chart.Name .Values.webui.nameOverride -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -55,9 +55,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "cate-webui.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "cate-webui.fullname" .) .Values.serviceAccount.name }}
+{{- if .Values.webui.serviceAccount.create -}}
+    {{ default (include "cate-webui.fullname" .) .Values.webui.serviceAccount.name }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
+    {{ default "default" .Values.webui.serviceAccount.name }}
 {{- end -}}
 {{- end -}}

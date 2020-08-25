@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "cate-webui.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.webui.replicaCount }}
   selector:
     matchLabels:
       {{- include "cate-webui.selectorLabels" . | nindent 6 }}
@@ -14,19 +14,23 @@ spec:
       labels:
         {{- include "cate-webui.selectorLabels" . | nindent 8 }}
     spec:
-    {{- with .Values.imagePullSecrets }}
+    {{- with .Values.webui.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       serviceAccountName: {{ include "cate-webui.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.webui.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            {{- toYaml .Values.webui.securityContext | nindent 12 }}
+          {{ if .Values.webui.image.dev }}
+          image: "{{ .Values.webui.image.repository }}"
+          {{ else }}
+          image: "{{ .Values.webui.image.repository }}:{{ .Chart.AppVersion }}"
+          {{ end }}
+          imagePullPolicy: {{ .Values.webui.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 80
@@ -40,16 +44,16 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
+            {{- toYaml .Values.webui.resources | nindent 12 }}
+      {{- with .Values.webui.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+    {{- with .Values.webui.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-    {{- with .Values.tolerations }}
+    {{- with .Values.webui.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
