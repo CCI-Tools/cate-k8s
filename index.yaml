@@ -1,7 +1,7 @@
 apiVersion: v2
 entries:
   cate:
-    - created: "2020-08-24T15:04:05Z07:00"
+    - created: "2020-08-24T20:16:59.139639398Z"
       description: "Deploy a K8s cate infrastructure for cate Version 2.1.0"
       digest:
       home: https://github.com/CCI-Tools
