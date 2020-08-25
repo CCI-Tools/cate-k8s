@@ -9,5 +9,5 @@ entries:
       sources:
         - https://github.com//CCI-Tools/cate
       urls:
-        - https://github.com/CCI-Tools/cate-k8s/blob/dzelge_add_stage/chart/cate-webui-0.1.12.tgz
+        - https://github.com/CCI-Tools/cate-k8s/blob/gh-pages/chart/cate-webui-0.1.12.tgz
       version: 0.1.12
