@@ -14,8 +14,6 @@ script:
 deploy:
   - provider: s3
     skip_cleanup: true
-    access_key_id: "AKIAVBLQBN5YFK3D5LNK"
-    secret_access_key: "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"
     acl: public_read
     local_dir: charts
     upload-dir: charts
