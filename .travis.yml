@@ -21,6 +21,7 @@ deploy:
     upload-dir: charts
     glob: "cate-*.tgz"
     bucket: "ke-cate-charts"
+    region: "eu-central-1"
     on:
       branch: master
   - provider: pages
