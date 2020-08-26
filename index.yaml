@@ -9,7 +9,7 @@ entries:
       sources:
         - https://github.com//CCI-Tools/cate
       urls:
-        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-0.1.12.tgz
+        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.1.12.tgz
       version: 0.1.12
     - created: "2020-08-26T20:16:59.139639398Z"
       description: "Deploy a K8s cate infrastructure for cate Version 2.1.1"
@@ -19,5 +19,5 @@ entries:
       sources:
         - https://github.com//CCI-Tools/cate
       urls:
-        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-0.1.13.tgz
+        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.1.13.tgz
       version: 0.1.13
