@@ -22,3 +22,4 @@ tags
 [._]*.un~
 
 /Chart.lock
+/.idea/
