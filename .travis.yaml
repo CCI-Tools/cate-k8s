@@ -1,0 +1,31 @@
+language: bash
+
+os:
+  - linux
+
+
+before_script:
+  - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+script:
+  - helm package -d charts .
+
+deploy:
+  - provider: s3
+    skip_cleanup: true
+    access_key_id: "AKIAVBLQBN5YFK3D5LNK"
+    secret_access_key: "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"
+    acl: public_read
+    local_dir: charts
+    upload-dir: charts
+    glob: "cate-*.tgz"
+    on:
+      branch: master
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+    keep_history: true
+    on:
+      branch: gh-pages
+
+
