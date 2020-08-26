@@ -3,7 +3,6 @@ language: bash
 os:
   - linux
 
-
 before_script:
   - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
@@ -23,11 +22,4 @@ deploy:
     region: "eu-central-1"
     on:
       branch: master
-  - provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-    keep_history: true
-    on:
-      branch: gh-pages
-
 
