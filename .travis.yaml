@@ -14,6 +14,8 @@ script:
 deploy:
   - provider: s3
     skip_cleanup: true
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
     acl: public_read
     local_dir: charts
     upload-dir: charts
