@@ -24,12 +24,8 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.webui.securityContext | nindent 12 }}
-          {{ if .Values.webui.image.dev }}
-          image: "{{ .Values.webui.image.repository }}"
-          {{ else }}
-          image: "{{ .Values.webui.image.repository }}:{{ .Chart.AppVersion }}"
-          {{ end }}
+          {{- toYaml .Values.webui.securityContext | nindent 12 }}
+          image: "{{ .Values.webui.image.repository }}:{{ .Values.webui.image.version }}"
           imagePullPolicy: {{ .Values.webui.image.pullPolicy }}
           ports:
             - name: http
