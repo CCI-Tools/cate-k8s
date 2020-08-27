@@ -30,4 +30,4 @@ entries:
           - https://github.com//CCI-Tools/cate
         urls:
           - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.1.14.tgz
-        version: 0.1.13
+        version: 0.1.14
