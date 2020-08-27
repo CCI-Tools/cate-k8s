@@ -12,7 +12,7 @@ Run command for stage deployment. Configurations in values.yaml will be overridd
 helm upgrade --values Chart.stage.yaml -f values.yaml -f values.stage.yaml --install cate-webui-stage -n cate-webui-stage .
 ```
 
-## Software Versions used in 0.1.12
+## Software Versions used in 0.1.14
 
 | Software          | Version |
 |-------------------|---------|
