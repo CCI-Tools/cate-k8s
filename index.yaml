@@ -1,36 +1,6 @@
 apiVersion: v2
 entries:
   cate:
-    - created: "2020-08-24T20:16:59.139639398Z"
-      description: "Deploy a K8s cate infrastructure for cate Version 2.1.0"
-      digest:
-      home: https://github.com/CCI-Tools
-      name: cate
-      sources:
-        - https://github.com//CCI-Tools/cate
-      urls:
-        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.1.12.tgz
-      version: 0.1.12
-    - created: "2020-08-26T20:16:59.139639398Z"
-      description: "Deploy a K8s cate infrastructure for cate Version 2.1.1"
-      digest:
-      home: https://github.com/CCI-Tools
-      name: cate
-      sources:
-        - https://github.com//CCI-Tools/cate
-      urls:
-        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.1.13.tgz
-      version: 0.1.13
-    - created: "2020-08-27T20:16:59.139639398Z"
-      description: "Deploy a K8s cate infrastructure for cate Version 2.1"
-      digest:
-      home: https://github.com/CCI-Tools
-      name: cate
-      sources:
-        - https://github.com//CCI-Tools/cate
-      urls:
-        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.1.14.tgz
-      version: 0.1.14
     - created: "2020-08-27T20:16:59.139639398Z"
       description: "Deploy a K8s cate infrastructure for cate Version 2.1 and jupyterhub version 1.1.0"
       digest:
