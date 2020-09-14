@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "xcubehub.name" . }}
+  labels:
+    {{- include "xcubehub.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.xcubehub.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "xcubehub.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "xcubehub.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.xcubehub.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "xcubehub.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.xcubehub.podSecurityContext | nindent 8 }}
+      volumes:
+        {{- toYaml .Values.xcubehub.volumes | nindent 8 }}
+      containers:
+        - name: {{ .Values.xcubehub.name }}
+          securityContext:
+          {{- toYaml .Values.xcubehub.securityContext | nindent 12 }}
+          image: "{{ .Values.xcubehub.image.repository }}:{{ .Values.xcubehub.image.tag }}"
+          imagePullPolicy: {{ .Values.webui.image.pullPolicy }}
+          ports:
+            - name: http-{{ .Values.xcubehub.name }}
+              containerPort: {{ .Values.xcubehub.port }}
+              protocol: TCP
+          env:
+            {{- range .Values.xcubehub.env }}
+            - name: {{ .name }}
+              value: {{ .value }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http-{{ .Values.xcubehub.name }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http-{{ .Values.xcubehub.name }}
+          volumeMounts:
+            {{- toYaml .Values.xcubehub.volumeMounts | nindent 12 }}
+          resources:
+            {{- toYaml .Values.xcubehub.resources | nindent 12 }}
+      {{- with .Values.xcubehub.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.xcubehub.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.xcubehub.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

@@ -18,7 +18,6 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "cate-webui.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.webui.podSecurityContext | nindent 8 }}
       containers:

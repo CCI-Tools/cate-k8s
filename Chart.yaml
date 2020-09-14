@@ -1,5 +1,5 @@
 apiVersion: v2
-name: cate-chart
+name: cate
 description: A Helm Chart for the CCI Toolbox (cate)
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -14,14 +14,9 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.1.15
+version: 0.2.2
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: 2.1
 
-# This Chart depends on jupyterhub version 0.8.2
-dependencies:
-  - name: jupyterhub
-    version: 0.9.0
-    repository: https://jupyterhub.github.io/helm-chart/
