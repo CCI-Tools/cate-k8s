@@ -19,5 +19,5 @@ entries:
         sources:
           - https://github.com//CCI-Tools/cate
         urls:
-          - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-chart-0.2.3.tgz
+          - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-0.2.3.tgz
         version: 0.2.3
