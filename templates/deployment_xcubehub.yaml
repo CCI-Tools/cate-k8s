@@ -36,7 +36,7 @@ spec:
           env:
             {{- range .Values.xcubehub.env }}
             - name: {{ .name }}
-              value: {{ .value }}
+              value: {{ .value | quote }}
             {{- end }}
           livenessProbe:
             httpGet:
