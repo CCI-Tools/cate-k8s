@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app: goofys-provider
+  name: goofys-provider
+spec:
+  selector:
+    matchLabels:
+      app: goofys-provider
+  template:
+    metadata:
+      labels:
+        app: goofys-provider
+    spec:
+      containers:
+        - name: goofys
+          image: quay.io/bcdev/cate-s3-daemon:0.1
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh","-c","umount -f /var/s3"]
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+          # use ALL  entries in the config map as environment variables
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              value: AKIAVBLQBN5YPTCQHRMO
+            - name: AWS_SECRET_ACCESS_KEY
+              value: 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
+          volumeMounts:
+            - name: devfuse
+              mountPath: /dev/fuse
+            - name: mnt-goofys
+              mountPath: /var/s3:shared
+      volumes:
+        - name: devfuse
+          hostPath:
+            path: /dev/fuse
+        - name: mnt-goofys
+          hostPath:
+            path: /var/s3

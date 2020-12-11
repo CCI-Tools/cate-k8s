@@ -1,0 +1,29 @@
+{{- if .Values.pvWorkspace.nfs -}}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: workspace-pvc
+spec:
+  storageClassName: nfs
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.pvWorkspace.capacity }}
+
+{{ else }}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: workspace-pvc
+spec:
+  storageClassName: manual
+  resources:
+    requests:
+      storage: {{ .Values.pvWorkspace.capacity }}
+  accessModes:
+    - ReadWriteOnce
+
+{{ end }}
