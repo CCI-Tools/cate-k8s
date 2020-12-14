@@ -25,12 +25,6 @@ spec:
             capabilities:
               add:
                 - SYS_ADMIN
-          # use ALL  entries in the config map as environment variables
-          env:
-            - name: AWS_ACCESS_KEY_ID
-              value: AKIAVBLQBN5YPTCQHRMO
-            - name: AWS_SECRET_ACCESS_KEY
-              value: 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
           volumeMounts:
             - name: devfuse
               mountPath: /dev/fuse
