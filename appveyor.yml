@@ -1,0 +1,37 @@
+version: '{build}'
+
+image: Ubuntu
+
+environment:
+  # Disable Powershell on Linux machines
+  APPVEYOR_YML_DISABLE_PS_LINUX: "true"
+
+configuration: Release
+
+artifacts:
+  - path: 'charts/*.tgz'
+
+install:
+  - sh: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+build: false
+
+build_script:
+  - sh: cd cate
+  - sh: helm dependencies update
+  - sh: helm lint . -f tests/test-values.yaml
+  - sh: helm package -d ../charts .
+  - sh: cd ..
+  - sh: cd cate-storage
+  - sh: helm dependencies update
+  - sh: helm lint . -f tests/test-values.yaml
+  - sh: helm package -d ../charts .
+  - sh: cd ..
+  - sh: ls -al charts
+
+
+deploy:
+  - provider: Environment
+    name: ke-cate-charts
+    on:
+      APPVEYOR_REPO_TAG: true
