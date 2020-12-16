@@ -6,9 +6,6 @@ metadata:
   name: workspace-pv
   labels:
     app: cate-workspace-prod
-{{/*  annotations:*/}}
-{{/*    pv.beta.kubernetes.io/gid: "100"*/}}
-{{/*    pv.beta.kubernetes.io/uid: "1000"*/}}
 spec:
   storageClassName: nfs
   capacity:
@@ -32,8 +29,6 @@ metadata:
   name: workspace-pv
   labels:
     app: cate-workspace-dev
-{{/*  annotations:*/}}
-{{/*    pv.beta.kubernetes.io/gid: "100"*/}}
 spec:
   storageClassName: manual
   capacity:
