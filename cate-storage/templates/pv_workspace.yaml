@@ -1,9 +1,10 @@
+{{ if .Values.pvWorkspace.spawn }}
 {{- if .Values.pvWorkspace.nfs -}}
 
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: workspace-pv
+  name: {{ .Values.pvWorkspace.name }}
   labels:
     app: cate-workspace-prod
 spec:
@@ -38,4 +39,5 @@ spec:
   hostPath:
     path: {{ .Values.pvWorkspace.mountPath }}
 
+{{ end }}
 {{ end }}
