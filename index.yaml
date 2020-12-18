@@ -32,23 +32,23 @@ entries:
         - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-0.2.4.tgz
       version: 0.2.4
     - created: "2020-12-15T20:16:59.139639398Z"
-        description: "Deploy a K8s cate infrastructure for cate Version v2.2 and xcubehub v1"
-        digest:
-        home: https://github.com/CCI-Tools
-        name: cate
-        sources:
-          - https://github.com//CCI-Tools/cate
-        urls:
-          - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-0.2.5.tgz
-        version: 0.2.5
+      description: "Deploy a K8s cate infrastructure for cate Version v2.2 and xcubehub v1"
+      digest:
+      home: https://github.com/CCI-Tools
+      name: cate
+      sources:
+        - https://github.com//CCI-Tools/cate
+      urls:
+        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-0.2.5.tgz
+      version: 0.2.5
   cate-storage:
     - created: "2020-12-15T20:16:59.139639398Z"
-        description: "Deploy a K8s cate shared user storage infrastructure for cate Version v2.2"
-        digest:
-        home: https://github.com/CCI-Tools
-        name: cate-storage
-        sources:
-          - https://github.com//CCI-Tools/cate
-        urls:
-          - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-storage-0.2.5.tgz
-        version: 0.2.5
+      description: "Deploy a K8s cate shared user storage infrastructure for cate Version v2.2"
+      digest:
+      home: https://github.com/CCI-Tools
+      name: cate-storage
+      sources:
+        - https://github.com//CCI-Tools/cate
+      urls:
+        - https://ke-cate-charts.s3.eu-central-1.amazonaws.com/charts/cate-storage-0.2.5.tgz
+      version: 0.2.5
