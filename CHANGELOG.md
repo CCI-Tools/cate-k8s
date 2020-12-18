@@ -1,6 +1,6 @@
 ## Changed in Version 0.2.6
 
-- The creation of the PV can now be switched off
+- The user can now name the used PVs
 
 ## Changed in Version 0.2.5
 
