@@ -1,5 +1,6 @@
 values.yaml
-values.stage.yaml
+values-ci.yaml
+values-stage.yaml
 # Created by .ignore support plugin (hsz.mobi)
 ### Vim template
 # Swap

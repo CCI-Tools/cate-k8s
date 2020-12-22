@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "cate-webui.fullname" . }}
+  name: {{ .Values.webui.name }}
   labels:
     {{- include "cate-webui.labels" . | nindent 4 }}
 spec:

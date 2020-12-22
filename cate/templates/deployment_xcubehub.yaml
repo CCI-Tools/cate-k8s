@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "xcubehub.name" . }}
+  name: {{ .Values.xcubehub.name }}
   labels:
     {{- include "xcubehub.labels" . | nindent 4 }}
 spec:
@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "xcubehub.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.xcubehub.serviceAccount.name }}
       securityContext:
         {{- toYaml .Values.xcubehub.podSecurityContext | nindent 8 }}
       volumes:

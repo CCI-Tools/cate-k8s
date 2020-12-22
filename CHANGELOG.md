@@ -1,6 +1,8 @@
 ## Changed in Version 0.2.6
 
-- The user can now name the used PVs
+- The user can now name PVs and PVs
+- Simplified _helpers.tpl relating namings of deployments
+- Fixed service account and cluster role binding name and namespace 
 
 ## Changed in Version 0.2.5
 
