@@ -29,6 +29,6 @@ spec:
     - port: {{ .Values.xcubehub.service.port }}
       targetPort: {{ .Values.xcubehub.port }}
       protocol: TCP
-      name: http-{{ .Values.xcubehub.name }}
+      name: {{ .Values.xcubehub.name }}
   selector:
   {{- include "xcubehub.selectorLabels" . | nindent 4 }}

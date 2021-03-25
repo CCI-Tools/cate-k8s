@@ -1,3 +1,4 @@
+{{ if .Values.daemonS3.create }}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -15,7 +16,26 @@ spec:
     spec:
       containers:
         - name: goofys
-          image: quay.io/bcdev/cate-s3-daemon:0.1
+          image: {{ .Values.daemonS3.repository }}:{{ .Values.daemonS3.tag }}
+          command:
+            - "/usr/local/bin/goofys"
+            {{ range .Values.daemonS3.goofys.mountOptions }}
+            - "{{ . }}"
+            {{ end }}
+            - "--uid"
+            - {{ .Values.daemonS3.fs.uid }}
+            - "--gid"
+            - {{ .Values.daemonS3.fs.gid }}
+            - "-f"
+            - "--region"
+            - {{ .Values.daemonS3.bucket.region }}
+            - {{ .Values.daemonS3.bucket.name }}
+            - "/var/s3"
+          env:
+            {{- range .Values.daemonS3.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+          {{- end }}
           lifecycle:
             preStop:
               exec:
@@ -37,3 +57,4 @@ spec:
         - name: mnt-goofys
           hostPath:
             path: /var/s3
+{{ end }}

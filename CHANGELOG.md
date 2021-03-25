@@ -1,8 +1,14 @@
+## Changed in Version 0.2.7
+
+- 
+
 ## Changed in Version 0.2.6
 
-- The user can now name PVs and PVs
 - Simplified _helpers.tpl relating namings of deployments
-- Fixed service account and cluster role binding name and namespace 
+- Fixed service account and cluster role binding name and namespace
+- The xcubehub service is now pulling the appropriate cate image version prior to starting
+- Corrected the names of services
+- Added an S3 
 
 ## Changed in Version 0.2.5
 

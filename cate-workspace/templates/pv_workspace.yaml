@@ -1,3 +1,4 @@
+{{- if .Values.pvWorkspace.create -}}
 {{- if .Values.pvWorkspace.nfs -}}
 
 apiVersion: v1
@@ -39,4 +40,4 @@ spec:
     path: {{ .Values.pvWorkspace.mountPath }}
 
 {{ end }}
-
+{{ end }}

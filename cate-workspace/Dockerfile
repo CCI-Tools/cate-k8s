@@ -14,5 +14,5 @@ RUN apk --update add bash vim wget curl fuse
 RUN wget https://github.com/kahing/goofys/releases/download/v${GOOFYS_VERSION}/goofys
 RUN chmod u+x ./goofys && mv goofys /usr/local/bin
 
-CMD ["/usr/local/bin/goofys", "-f", "--region", "eu-central-1", "eurodatacube", "/var/s3"]
+CMD ["/usr/local/bin/goofys", "-o", "allow_other", "--uid", "1000", "--gid", "1000",  "-f", "--region", "eu-central-1", "eurodatacube", "/var/s3"]
 

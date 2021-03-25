@@ -23,6 +23,13 @@ spec:
         {{- toYaml .Values.xcubehub.podSecurityContext | nindent 8 }}
       volumes:
         {{- toYaml .Values.xcubehub.volumes | nindent 8 }}
+      initContainers:
+        - name: pull-cate
+          image: {{ .Values.xcubehub.cateImage }}:{{ .Values.xcubehub.cateVersion }}
+          command:
+            - /bin/bash
+            - -c
+            - ls
       containers:
         - name: {{ .Values.xcubehub.name }}
           securityContext:
@@ -30,7 +37,7 @@ spec:
           image: "{{ .Values.xcubehub.image.repository }}:{{ .Values.xcubehub.image.tag }}"
           imagePullPolicy: {{ .Values.webui.image.pullPolicy }}
           ports:
-            - name: http-{{ .Values.xcubehub.name }}
+            - name: {{ .Values.xcubehub.name }}
               containerPort: {{ .Values.xcubehub.port }}
               protocol: TCP
           env:
@@ -40,12 +47,12 @@ spec:
             {{- end }}
           livenessProbe:
             httpGet:
-              path: /
-              port: http-{{ .Values.xcubehub.name }}
+              path: {{ .Values.xcubehub.apiPath }}
+              port: {{ .Values.xcubehub.name }}
           readinessProbe:
             httpGet:
-              path: /
-              port: http-{{ .Values.xcubehub.name }}
+              path: {{ .Values.xcubehub.apiPath }}
+              port: {{ .Values.xcubehub.name }}
           volumeMounts:
             {{- toYaml .Values.xcubehub.volumeMounts | nindent 12 }}
           resources:

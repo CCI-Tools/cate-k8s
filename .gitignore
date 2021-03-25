@@ -1,6 +1,4 @@
-values.yaml
-values-ci.yaml
-values-stage.yaml
+values*.yaml
 # Created by .ignore support plugin (hsz.mobi)
 ### Vim template
 # Swap
@@ -24,4 +22,6 @@ tags
 [._]*.un~
 
 /cate/Chart.lock
-/cate-storage/Chart.lock
+/cate-workspace/Chart.lock
+/cate/cfg/
+/cate-workspace/cfg/
