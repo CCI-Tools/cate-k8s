@@ -1,6 +1,10 @@
 ## Changed in Version 0.2.7
 
-- 
+- Added a configmap for stores (datapools)
+- Added a pod initialisation for xcubehub to pre-pull cate
+- removed http prefix from service names
+- Allowed to configure whether an S3 object store daemonset shall be created
+- Allowed to configure whether a PV shall be created
 
 ## Changed in Version 0.2.6
 
