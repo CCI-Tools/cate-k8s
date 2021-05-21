@@ -7,7 +7,7 @@ default:
   - &cate-webui-img quay.io/ccitools/cate-webui
   - &cate-version 3.0.0.dev1
   - &cate-img quay.io/ccitools/cate-xcube
-  - &xcubehub-namespace cate-stage
+  - &xcubehub-namespace cate-dev
 
 
 webui:
@@ -40,7 +40,7 @@ webui:
   # runAsUser: 1000
 
   service:
-    type: NodePort
+    type: ClusterIP
     port: 80
 
   resources: {}
