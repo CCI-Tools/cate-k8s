@@ -1,13 +1,13 @@
 default:
-  - &bc-webui-host dev.cate.brockmann-consult.de
-  - &bc-catehub-host dev.catehub.brockmann-consult.de
+  - &bc-catehub-host dev.cate.brockmann-consult.de
+  - &bc-webui-host dev.catehub.brockmann-consult.de
   - &xcubehub-version v2.0.1.dev7
   - &xcubehub-img quay.io/bcdev/xcube-hub
   - &cate-webui-version 3.0.0-dev.0.stage
   - &cate-webui-img quay.io/ccitools/cate-webui
   - &cate-version 3.0.0.dev1
   - &cate-img quay.io/ccitools/cate-xcube
-  - &xcubehub-namespace cate-dev
+  - &xcubehub-namespace cate-stage
 
 
 webui:
@@ -15,65 +15,13 @@ webui:
   # This is a YAML-formatted file.
   # Declare variables to be passed into your templates.
 
-  name: webui
-  replicaCount: 1
-
   image:
     repository: *cate-webui-img
     version: *cate-webui-version
     # pullPolicy: IfNotPresent
     pullPolicy: Always
 
-  imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
-
-  podSecurityContext: {}
-  # fsGroup: 2000
-
-  securityContext: {}
-    # capabilities:
-    #   drop:
-    #   - ALL
-    # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-  service:
-    type: ClusterIP
-    port: 80
-
-  resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
-  nodeSelector: {}
-
-  tolerations: []
-
-  affinity: {}
-
-
 ingress:
-  enabled: true
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt"
-    proxy_set_header: "Upgrade $http_upgrade; Connection \"upgrade\""
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-    ingress.kubernetes.io/proxy-connect-timeout: "86400"
-    ingress.kubernetes.io/proxy-read-timeout: "86400"
-    ingress.kubernetes.io/proxy-send-timeout: "86400"
-    ingress.kubernetes.io/send-timeout: "86400"
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: "2000m"
   hosts:
     - host: *bc-webui-host
       paths:
@@ -83,8 +31,8 @@ ingress:
     - host: *bc-catehub-host
       paths:
         - path: /(.*)
-          servicePort: 8000
-          serviceName: xcubehub
+          servicePort: 8080
+          serviceName: xcubehub-stage
   tls:
     - secretName: cate-webui-tls
       hosts:
@@ -93,30 +41,36 @@ ingress:
 
 
 xcubehub:
-  name: xcubehub
+  name: xcubehub-stage
+
   namespace: *xcubehub-namespace
-  apiPath: /api/v2
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: xcubehub-stage
   image:
     repository: *xcubehub-img
     tag: *xcubehub-version
     pullPolicy: Always # Use Always for development
-  port: 8080
-  replicaCount: 1
-  rollme: 1
-  resources: {}
   volumes:
-    - name: oidc-volume
-      secret:
-        secretName: oidc
+    - name: cate-stores
+      configMap:
+        name: cate-stores
   volumeMounts:
-    - name: oidc-volume
-      mountPath: /oidc
+    - name: cate-stores
+      mountPath: "/etc/cate"
       readOnly: true
   cateImage: *cate-img
   cateVersion: *cate-version
+  port: 8080
+  service:
+    type: ClusterIP
+    port: 8080
   env:
-    #    - name: XCUBE_GEN_DEBUG_HOST
-    #      value: 172.17.0.1
     - name: CATE_ENVS
       value: "cate-envs"
     - name: XCUBEHUB_STATUS
@@ -173,8 +127,6 @@ xcubehub:
       value: 6
     - name: K8S_NAMESPACE
       value: *xcubehub-namespace
-    - name: OIDC_CLIENT_SECRETS_FILE
-      value: /oidc/client_secrets.json
     - name: CATE_IMG
       value: *cate-img
     - name: CATE_VERSION
@@ -207,38 +159,3 @@ xcubehub:
       value: 'Ready'
     - name: XCUBE_HUB_CATE_MESSAGE
       value: 'OK'
-
-
-  imagePullSecrets: []
-  fullnameOverride: ""
-
-  podSecurityContext: {}
-  # fsGroup: 2000
-
-  securityContext: {}
-    # capabilities:
-    #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
-  service:
-    type: NodePort
-    port: 8000
-
-  nodeSelector: {}
-
-  tolerations: []
-
-  affinity: {}
-
-  serviceAccount:
-    # Specifies whether a service account should be created
-    create: true
-    # Annotations to add to the service account
-    annotations: {}
-    # The name of the service account to use.
-    # If not set and create is true, a name is generated using the fullname template
-    name: xcubehub
-
