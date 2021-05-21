@@ -145,6 +145,25 @@ xcubehub:
       value: "cate-webapi-start -b -v -p 4000 -a 0.0.0.0 --auto-stop-after 3600 --root /home/cate/workspace"
     - name: CATE_USER_ROOT
       value: "/home/cate/workspace"
+    # xcube hub configurations
+    - name: XCUBE_HUB_PROCESS_LIMIT
+      value: 10000
+    - name: XCUBE_GEN_DATA_POOLS_PATH
+      value: "/etc/xcube/data-pools.yaml"
+    - name: XCUBE_HUB_CFG_DATAPOOLS_SCHEMA
+      value: 'stores-schema.json'
+    - name: XCUBE_HUB_CFG_DIR
+      value: '/etc/xcube'
+    - name: XCUBE_HUB_CFG_DATAPOOLS
+      value: 'data-pools.yaml'
+    - name: XCUBE_HUB_XCUBE_GEN_STATUS
+      value: 'Ready'
+    - name: XCUBE_HUB_XCUBE_GEN_MESSAGE
+      value: 'OK'
+    - name: XCUBE_HUB_CATE_STATUS
+      value: 'Ready'
+    - name: XCUBE_HUB_CATE_MESSAGE
+      value: 'OK'
 
 
   imagePullSecrets: []
