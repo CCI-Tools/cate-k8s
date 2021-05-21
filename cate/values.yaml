@@ -100,7 +100,7 @@ xcubehub:
     repository: *xcubehub-img
     tag: *xcubehub-version
     pullPolicy: Always # Use Always for development
-  port: 8000
+  port: 8080
   replicaCount: 1
   rollme: 1
   resources: {}
