@@ -117,20 +117,60 @@ xcubehub:
   env:
     #    - name: XCUBE_GEN_DEBUG_HOST
     #      value: 172.17.0.1
-    - name: CATE_LAUNCH_GRACE
-      value: 3
-    - name: LAUNCH_XCUBE_GEN
-      value: 0
-    - name: LAUNCH_CATE
-      value: 1
-    - name: LAUNCH_GEODB
-      value: 0
+    - name: CATE_ENVS
+      value: "cate-envs"
     - name: XCUBEHUB_STATUS
       value: "Running"
     - name: XCUBEHUB_STATUS_MESSAGE
       value: "Running"
+    - name: XCUBE_DOCKER_IMG
+      value: na
+    - name: XCUBE_DOCKER_WEBAPI_IMG
+      value: na
+    - name: XCUBE_HUB_CALLBACK_URL
+      value: na
+    - name: XCUBE_HUB_DOCKER_PULL_POLICY
+      value: Always
+    - name: XCUBE_HUB_CACHE_PROVIDER
+      value: redis
+    - name: XCUBE_HUB_REDIS_HOST
+      value: xcube-gen-stage-redis
+    - name: XCUBE_WEBAPI_URI
+      value: fsdv
+    - name: XCUBE_HUB_PROCESS_LIMIT
+      value: 10000
+    - name: XCUBE_HUB_TOKEN_SECRET
+      value: 'na'
+    - name: AUTH0_USER_MANAGEMENT_CLIENT_ID
+      value: 'na'
+    - name: AUTH0_USER_MANAGEMENT_CLIENT_SECRET
+      value: 'na'
+    - name: XCUBE_VIEWER_PATH
+      value: '/'
+    - name: XCUBE_VIEWER_URI
+      value: 'http://stage.xcube-gen-viewer.brockmann-consult.de'
+    - name: XCUBE_GEN_API_CALLBACK_URL
+      value: sdsav
+    - name: XCUBE_GEN_DATA_POOLS_PATH
+      value: "/etc/cate/stores.yaml"
+    - name: XCUBE_HUB_OAUTH_USER_MANAGEMENT_AUD
+      value: 'https://edc.eu.auth0.com/api/v2/'
+    - name: XCUBE_HUB_CFG_DATAPOOLS
+      value: stores.yaml
+    - name: XCUBE_HUB_CFG_DIR
+      value: /etc/cate
+    - name: XCUBE_HUB_CFG_DATAPOOLS_SCHEMA
+      value: stores-schema.yaml
+    - name: K8S_NAMESPACE
+      value: xcube-gen-stage
+    - name: CDSAPI_URL
+      value: 'https://cds.climate.copernicus.eu/api/v2'
+    - name: CDSAPI_KEY
+      value: 'na'
     - name: CATE_WEBAPI_NAMESPACE
-      value: cate-workspace
+      value: cate-workspace-stage
+    - name: CATE_LAUNCH_GRACE
+      value: 6
     - name: K8S_NAMESPACE
       value: *xcubehub-namespace
     - name: OIDC_CLIENT_SECRETS_FILE
@@ -145,17 +185,20 @@ xcubehub:
       value: "cate-webapi-start -b -v -p 4000 -a 0.0.0.0 --auto-stop-after 3600 --root /home/cate/workspace"
     - name: CATE_USER_ROOT
       value: "/home/cate/workspace"
-    # xcube hub configurations
-    - name: XCUBE_HUB_PROCESS_LIMIT
-      value: 10000
-    - name: XCUBE_GEN_DATA_POOLS_PATH
-      value: "/etc/xcube/data-pools.yaml"
-    - name: XCUBE_HUB_CFG_DATAPOOLS_SCHEMA
-      value: 'stores-schema.json'
-    - name: XCUBE_HUB_CFG_DIR
-      value: '/etc/xcube'
-    - name: XCUBE_HUB_CFG_DATAPOOLS
-      value: 'data-pools.yaml'
+    - name: AWS_ACCESS_KEY_ID
+      value: "na"
+    - name: AWS_SECRET_ACCESS_KEY
+      value: "na"
+    - name: KEYCLOAK_DOMAIN
+      value: 192-171-139-82.sslip.io
+    - name: XCUBE_HUB_OAUTH_AUD
+      value: cate
+    - name: SH_CLIENT_ID
+      value: na
+    - name: SH_CLIENT_SECRET
+      value: na
+    - name: SH_INSTANCE_ID
+      value: na
     - name: XCUBE_HUB_XCUBE_GEN_STATUS
       value: 'Ready'
     - name: XCUBE_HUB_XCUBE_GEN_MESSAGE
