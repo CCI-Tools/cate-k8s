@@ -1,14 +1,13 @@
 default:
-  - &bc-webui-host cate.climate.esa.int
-  - &bc-catehub-host catehub.climate.esa.int
-
-  - &xcubehub-version v1.0.13
+  - &bc-webui-host dev.cate.brockmann-consult.de
+  - &bc-catehub-host dev.catehub.brockmann-consult.de
+  - &xcubehub-version v2.0.1.dev7
   - &xcubehub-img quay.io/bcdev/xcube-hub
-  - &cate-webui-version 2.2.3.prod.1
+  - &cate-webui-version 3.0.0-dev.0.stage
   - &cate-webui-img quay.io/ccitools/cate-webui
-  - &cate-version 2.1.5
-  - &cate-img quay.io/ccitools/cate
-  - &xcubehub-namespace cate
+  - &cate-version 3.0.0.dev1
+  - &cate-img quay.io/ccitools/cate-xcube
+  - &xcubehub-namespace cate-stage
 
 
 webui:
